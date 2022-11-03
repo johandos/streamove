@@ -1,18 +1,23 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home/Index.vue'
+import Router from 'vue-router'
 
-Vue.use(VueRouter)
+Vue.use(Router)
 
-const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
-  }
+const routerOptions = [
+  { path: '/', name: 'Home', meta: { showBreadcrumb: true } },
+  { path: '/stream', name: 'Stream', meta: { showBreadcrumb: true } },
+  { path: '/error', name: 'Error' },
+  { path: '*', redirect: { name: 'Home' } }
 ]
 
-const router = new VueRouter({
+const routes = routerOptions.map(r => {
+  return {
+    ...r,
+    component: () => import(`@/views/${r.name}/Index.vue`)
+  }
+})
+
+const router = new Router({
   routes
 })
 

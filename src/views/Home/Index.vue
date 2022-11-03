@@ -1,17 +1,14 @@
 <template>
-  <div class="home">
-    <HelloWorld msg="Stream Moves"/>
+  <div class="home-view">
+    <HomeTitle/>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import HomeTitle from './HomeTitle'
 
 export default {
   name: 'HomeView',
-  components: {
-    HelloWorld
-  }
+  components: { HomeTitle }
 }
 </script>
